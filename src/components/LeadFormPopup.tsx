@@ -11,8 +11,8 @@ import {
 } from '@/components/ui/dialog';
 
 /* ✅ GOOGLE SHEET WEB APP URL */
-const GOOGLE_SHEET_URL =
-  'https://script.google.com/macros/s/AKfycbxTymtOURKbNLkaUg8IkxPPF9Ts1svwfObFk8LvwVWmAXUQvEfz8slohQfYQfXedddf/exec';
+const GOOGLE_SHEET_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
+
 
 interface LeadFormPopupProps {
   isOpen: boolean;
