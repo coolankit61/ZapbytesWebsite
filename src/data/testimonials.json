@@ -1,0 +1,36 @@
+{
+  "testimonials": [
+    {
+      "id": "1",
+      "name": "Priya Sharma",
+      "role": "Software Engineer",
+      "content": "zapbytes has completely transformed my work-from-home experience. The speeds are incredible and I've never faced a single outage in 6 months!",
+      "avatar": "/avatar-1.jpg",
+      "rating": 5
+    },
+    {
+      "id": "2",
+      "name": "Rahul Verma",
+      "role": "Content Creator",
+      "content": "As a YouTuber, I need fast upload speeds. zapbytes's equal upload/download speeds have made my workflow so much smoother. Highly recommended!",
+      "avatar": "/avatar-2.jpg",
+      "rating": 5
+    },
+    {
+      "id": "3",
+      "name": "Anita Desai",
+      "role": "Business Owner",
+      "content": "We switched our office to zapbytes and the difference is night and day. Video conferences are crystal clear and file transfers are lightning fast.",
+      "avatar": "/avatar-3.jpg",
+      "rating": 5
+    },
+    {
+      "id": "4",
+      "name": "Karan Patel",
+      "role": "Gaming Enthusiast",
+      "content": "The low latency and consistent speeds make online gaming a dream. No more lag spikes or connection drops during crucial moments.",
+      "avatar": "/avatar-4.jpg",
+      "rating": 5
+    }
+  ]
+}

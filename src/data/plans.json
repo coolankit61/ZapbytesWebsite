@@ -1,0 +1,136 @@
+{
+  "internetPlans": [
+    {
+      "id": "basic-100",
+      "name": "Basic Package",
+      "speed": 100,
+      "speedUnit": "Mbps",
+      "price": 424,
+      "period": "Month",
+      "features": [
+        "Up to 100 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "No Installation Charges"
+      ]
+    },
+    {
+      "id": "standard-200",
+      "name": "Standard Package",
+      "speed": 200,
+      "speedUnit": "Mbps",
+      "price": 508,
+      "period": "Month",
+      "features": [
+        "Up to 200 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "No Installation Charges"
+      ],
+      "popular": true,
+      "badge": "Most Popular"
+    },
+    {
+      "id": "premium-300",
+      "name": "Premium Package",
+      "speed": 300,
+      "speedUnit": "Mbps",
+      "price": 593,
+      "period": "Month",
+      "features": [
+        "Up to 300 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "No Installation Charges"
+      ]
+    },
+    {
+      "id": "vip-400",
+      "name": "VIP Package",
+      "speed": 400,
+      "speedUnit": "Mbps",
+      "price": 678,
+      "period": "Month",
+      "features": [
+        "Up to 400 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "No Installation Charges"
+      ],
+      "badge": "Best Value"
+    }
+  ],
+  "annualPlans": [
+    {
+      "id": "annual-basic-100",
+      "name": "Basic Annual",
+      "speed": 100,
+      "speedUnit": "Mbps",
+      "price": 4240,
+      "originalPrice": 5088,
+      "period": "Year",
+      "features": [
+        "Up to 100 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "2 Months Free"
+      ]
+    },
+    {
+      "id": "annual-standard-200",
+      "name": "Standard Annual",
+      "speed": 200,
+      "speedUnit": "Mbps",
+      "price": 5080,
+      "originalPrice": 6096,
+      "period": "Year",
+      "features": [
+        "Up to 200 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "2 Months Free"
+      ],
+      "popular": true,
+      "badge": "Most Popular"
+    },
+    {
+      "id": "annual-premium-300",
+      "name": "Premium Annual",
+      "speed": 300,
+      "speedUnit": "Mbps",
+      "price": 5930,
+      "originalPrice": 7116,
+      "period": "Year",
+      "features": [
+        "Up to 300 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "2 Months Free"
+      ]
+    },
+    {
+      "id": "annual-vip-400",
+      "name": "VIP Annual",
+      "speed": 400,
+      "speedUnit": "Mbps",
+      "price": 6780,
+      "originalPrice": 8136,
+      "period": "Year",
+      "features": [
+        "Up to 400 Mbps Speed",
+        "Unlimited Data",
+        "Free Wi-Fi Router",
+        "24/7 Support",
+        "2 Months Free"
+      ],
+      "badge": "Best Value"
+    }
+  ]
+}

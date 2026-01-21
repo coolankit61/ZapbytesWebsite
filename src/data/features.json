@@ -1,0 +1,40 @@
+{
+  "features": [
+    {
+      "id": "fiber-ftth",
+      "icon": "Zap",
+      "title": "Fiber To The Home",
+      "description": "Experience blazing fast internet with our 100% fiber optic network directly to your home for unmatched speed and reliability."
+    },
+    {
+      "id": "ultra-hd",
+      "icon": "MonitorPlay",
+      "title": "4K Viewing Experience",
+      "description": "Stream your favorite content in stunning 4K Ultra HD quality without buffering or lag."
+    },
+    {
+      "id": "unlimited-data",
+      "icon": "Infinity",
+      "title": "Unlimited Data",
+      "description": "No FUP limits or data caps. Browse, stream, and download as much as you want without worrying."
+    },
+    {
+      "id": "equal-speed",
+      "icon": "ArrowUpDown",
+      "title": "Equal Upload & Download",
+      "description": "Get symmetrical speeds for seamless video calls, file uploads, and cloud storage access."
+    },
+    {
+      "id": "smart-router",
+      "icon": "Wifi",
+      "title": "Smart Router Included",
+      "description": "Get a high-performance dual-band Wi-Fi router included with every plan for optimal coverage."
+    },
+    {
+      "id": "24-7-support",
+      "icon": "Headphones",
+      "title": "24/7 Support",
+      "description": "Our dedicated support team is available round the clock to assist you with any issues."
+    }
+  ]
+}

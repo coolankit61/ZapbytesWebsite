@@ -1,0 +1,44 @@
+{
+  "faqs": [
+    {
+      "id": "1",
+      "question": "How can I order zapbytes new connection?",
+      "answer": "Ordering a new connection is easy! You can fill out the inquiry form on our website with your details, and our team will get back to you within 24 hours. Alternatively, you can call our helpline at +91 9716321656 or chat with us on WhatsApp for instant assistance."
+    },
+    {
+      "id": "2",
+      "question": "Is zapbytes FiberNet available in my area?",
+      "answer": "We are rapidly expanding our network across major cities. To check availability in your area, simply enter your pincode in our coverage checker tool on the homepage, or contact our support team. If we're not available yet, we'll add you to our priority list and notify you as soon as we arrive."
+    },
+    {
+      "id": "3",
+      "question": "What is FTTH?",
+      "answer": "FTTH stands for Fiber To The Home. It's a broadband network architecture that uses optical fiber to deliver high-speed internet directly from the service provider to individual residences. Unlike traditional copper cables, fiber optic cables provide much higher bandwidth and are less susceptible to interference, ensuring consistent speeds."
+    },
+    {
+      "id": "4",
+      "question": "What is the difference between FTTH and other technologies?",
+      "answer": "FTTH offers several advantages over traditional broadband technologies like DSL or cable: 1) Much higher speeds (up to 1 Gbps and beyond), 2) Symmetrical upload/download speeds, 3) Lower latency for gaming and video calls, 4) More reliable connection with less downtime, 5) Future-proof technology that can handle increasing bandwidth demands."
+    },
+    {
+      "id": "5",
+      "question": "What is a Smart Router?",
+      "answer": "Our Smart Router is a high-performance dual-band Wi-Fi device included with all plans. It supports both 2.4GHz and 5GHz bands, features advanced QoS (Quality of Service) settings for prioritizing traffic, includes parental controls, and can be managed through our mobile app. It ensures optimal Wi-Fi coverage throughout your home."
+    },
+    {
+      "id": "6",
+      "question": "Do you offer OTT subscriptions with your plans?",
+      "answer": "Yes! We have bundled plans that include subscriptions to popular OTT platforms like Netflix, Amazon Prime Video, Disney+ Hotstar, ZEE5, and many more. Our higher-tier plans include up to 17 OTT subscriptions, giving you access to thousands of movies, shows, and live sports."
+    },
+    {
+      "id": "7",
+      "question": "What are the installation charges?",
+      "answer": "We frequently run promotional offers with zero installation charges and zero security deposit. During regular periods, installation charges vary based on the plan selected. Contact our sales team for the latest offers and pricing. Annual plan customers always get free installation."
+    },
+    {
+      "id": "8",
+      "question": "How quickly can I get connected?",
+      "answer": "We offer fast installation within 48 hours of plan activation in most areas. In some locations with high demand, it may take up to 72 hours. Our team will schedule the installation at your convenience and keep you updated throughout the process."
+    }
+  ]
+}

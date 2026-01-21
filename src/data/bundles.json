@@ -1,0 +1,114 @@
+{
+  "internetOTT": [
+    {
+      "id": "ott-basic-100",
+      "name": "Basic",
+      "speed": 100,
+      "speedUnit": "Mbps",
+      "price": 508,
+      "period": "Month",
+      "features": [
+        "Up to 100 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ]
+    },
+    {
+      "id": "ott-standard-200",
+      "name": "Standard",
+      "speed": 200,
+      "speedUnit": "Mbps",
+      "price": 644,
+      "period": "Month",
+      "features": [
+        "Up to 200 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ],
+      "popular": true
+    },
+    {
+      "id": "ott-premium-300",
+      "name": "Premium",
+      "speed": 300,
+      "speedUnit": "Mbps",
+      "price": 762,
+      "period": "Month",
+      "features": [
+        "Up to 300 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ]
+    },
+    {
+      "id": "ott-vip-400",
+      "name": "VIP",
+      "speed": 400,
+      "speedUnit": "Mbps",
+      "price": 847,
+      "period": "Month",
+      "features": [
+        "Up to 400 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ],
+      "badge": "Best Value"
+    }
+  ],
+  "dishTVBundles": [
+    {
+      "id": "dish-basic-100",
+      "name": "Basic",
+      "speed": 100,
+      "speedUnit": "Mbps",
+      "price": 699,
+      "period": "Month",
+      "features": [
+        "Up to 100 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ]
+    },
+    {
+      "id": "dish-standard-200",
+      "name": "Standard",
+      "speed": 200,
+      "speedUnit": "Mbps",
+      "price": 899,
+      "period": "Month",
+      "features": [
+        "Up to 200 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ],
+      "popular": true
+    },
+    {
+      "id": "dish-premium-300",
+      "name": "Premium",
+      "speed": 300,
+      "speedUnit": "Mbps",
+      "price": 1099,
+      "period": "Month",
+      "features": [
+        "Up to 300 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ]
+    },
+    {
+      "id": "dish-vip-400",
+      "name": "VIP",
+      "speed": 400,
+      "speedUnit": "Mbps",
+      "price": 1199,
+      "period": "Month",
+      "features": [
+        "Up to 400 Mbps Speed",
+        "Unlimited Data",
+        "Unlimited Calls"
+      ],
+      "badge": "Ultimate Pack"
+    }
+  ]
+}
