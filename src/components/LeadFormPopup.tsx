@@ -13,7 +13,6 @@ import {
 /* ✅ GOOGLE SHEET WEB APP URL */
 const GOOGLE_SHEET_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
 
-
 interface LeadFormPopupProps {
   isOpen: boolean;
   onClose: () => void;
@@ -33,51 +32,55 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
 
   /* ✅ REAL SUBMIT HANDLER */
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (!formData.consent) return;
+    e.preventDefault();
+    if (!formData.consent) return;
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  const payload = {
-    name: formData.name,
-    phone: formData.phone,
-    pincode: formData.pincode,
-    email: formData.email,
-    source: 'Get Started Popup',
-  };
+    // ✅ AUTO ADD +91 PREFIX
+    const formattedPhone = formData.phone.startsWith('91')
+      ? formData.phone
+      : `91${formData.phone}`;
 
-  try {
-    console.log('Submitting lead:', payload);
+    const payload = {
+      name: formData.name,
+      phone: formattedPhone,
+      pincode: formData.pincode,
+      email: formData.email,
+      source: 'Get Started Popup',
+    };
 
-    const response = await fetch(GOOGLE_SHEET_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload), // ⚠️ NO headers
-    });
+    try {
+      console.log('Submitting lead:', payload);
 
-    // optional debug
-    const text = await response.text();
-    console.log('Google Script response:', text);
-
-    setIsSubmitted(true);
-
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        phone: '',
-        pincode: '',
-        email: '',
-        consent: false,
+      const response = await fetch(GOOGLE_SHEET_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload), // ⚠️ no headers
       });
-      onClose();
-    }, 3000);
-  } catch (error) {
-    console.error('Lead submit error:', error);
-    alert('Submission failed. Please try again.');
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+
+      const text = await response.text();
+      console.log('Google Script response:', text);
+
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          name: '',
+          phone: '',
+          pincode: '',
+          email: '',
+          consent: false,
+        });
+        onClose();
+      }, 3000);
+    } catch (error) {
+      console.error('Lead submit error:', error);
+      alert('Submission failed. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -145,7 +148,10 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
                     className="pl-10 py-5"
                     value={formData.phone}
                     onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
+                      setFormData({
+                        ...formData,
+                        phone: e.target.value.replace(/\D/g, ''),
+                      })
                     }
                   />
                 </div>
@@ -164,7 +170,10 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
                     className="pl-10 py-5"
                     value={formData.pincode}
                     onChange={(e) =>
-                      setFormData({ ...formData, pincode: e.target.value })
+                      setFormData({
+                        ...formData,
+                        pincode: e.target.value.replace(/\D/g, ''),
+                      })
                     }
                   />
                 </div>

@@ -16,7 +16,7 @@ const contactInfo = [
     icon: Phone,
     title: 'Call Us',
     content: '+91 9716321656',
-    subContent: 'Toll-free number',
+    subContent: '',
   },
   {
     icon: Mail,
