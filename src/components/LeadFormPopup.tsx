@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Phone, MapPin, User, Mail, Check } from 'lucide-react';
+import { Phone, MapPin, User, Mail, Check, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -12,6 +12,33 @@ import {
 
 /* ✅ GOOGLE SHEET WEB APP URL */
 const GOOGLE_SHEET_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
+
+/* ✅ COMPANY FEASIBLE PINCODES */
+const FEASIBLE_PINCODES = [
+  '110012',
+  '110015',
+  '110028',
+  '110032',
+  '110035',
+  '110039',
+  '110040',
+  '110042',
+  '110045',
+  '110046',
+  '110052',
+  '110053',
+  '110054',
+  '110063',
+  '110083',
+  '110084',
+  '110085',
+  '110086',
+  '110089',
+  '110093',
+  '110094',
+  '110095',
+];
+
 
 interface LeadFormPopupProps {
   isOpen: boolean;
@@ -29,18 +56,21 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isFeasible, setIsFeasible] = useState<boolean | null>(null);
 
-  /* ✅ REAL SUBMIT HANDLER */
+  /* ✅ FORM SUBMIT HANDLER */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.consent) return;
 
     setIsSubmitting(true);
 
-    // ✅ AUTO ADD +91 PREFIX
-    const formattedPhone = formData.phone.startsWith('91')
-      ? formData.phone
-      : `91${formData.phone}`;
+    // ✅ Auto add 91 prefix
+    const formattedPhone = `91${formData.phone}`;
+
+    // ✅ Feasibility check (AFTER submit)
+    const feasible = FEASIBLE_PINCODES.includes(formData.pincode);
+    setIsFeasible(feasible);
 
     const payload = {
       name: formData.name,
@@ -51,20 +81,16 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
     };
 
     try {
-      console.log('Submitting lead:', payload);
-
-      const response = await fetch(GOOGLE_SHEET_URL, {
+      await fetch(GOOGLE_SHEET_URL, {
         method: 'POST',
         body: JSON.stringify(payload), // ⚠️ no headers
       });
-
-      const text = await response.text();
-      console.log('Google Script response:', text);
 
       setIsSubmitted(true);
 
       setTimeout(() => {
         setIsSubmitted(false);
+        setIsFeasible(null);
         setFormData({
           name: '',
           phone: '',
@@ -73,7 +99,7 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
           consent: false,
         });
         onClose();
-      }, 3000);
+      }, 3500);
     } catch (error) {
       console.error('Lead submit error:', error);
       alert('Submission failed. Please try again.');
@@ -94,18 +120,32 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
         <AnimatePresence mode="wait">
           {isSubmitted ? (
             <motion.div
-              key="success"
+              key="result"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
               className="text-center py-12"
             >
-              <div className="w-20 h-20 rounded-full bg-[#28a745]/10 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-10 h-10 text-[#28a745]" />
+              <div
+                className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ${
+                  isFeasible ? 'bg-green-100' : 'bg-red-100'
+                }`}
+              >
+                {isFeasible ? (
+                  <Check className="w-10 h-10 text-green-600" />
+                ) : (
+                  <X className="w-10 h-10 text-red-600" />
+                )}
               </div>
-              <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
+
+              <h3 className="text-xl font-semibold mb-2">
+                {isFeasible ? 'Thank You!' : 'Sorry 😔'}
+              </h3>
+
               <p className="text-muted-foreground">
-                Our team will contact you within 24 hours.
+                {isFeasible
+                  ? 'Our team will contact you within 24 hours.'
+                  : 'Currently, our network is not available in your area. We will reach out once services are launched.'}
               </p>
             </motion.div>
           ) : (
@@ -117,7 +157,7 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
               onSubmit={handleSubmit}
               className="space-y-4"
             >
-              {/* Name */}
+              {/* Full Name */}
               <div>
                 <label className="text-sm font-medium">Full Name *</label>
                 <div className="relative">
@@ -213,7 +253,7 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
                 I agree to receive WhatsApp notifications
               </label>
 
-              {/* Submit */}
+              {/* Submit Button */}
               <Button
                 type="submit"
                 disabled={isSubmitting || !formData.consent}
