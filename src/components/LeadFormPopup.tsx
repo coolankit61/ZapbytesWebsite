@@ -72,11 +72,25 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
     const feasible = FEASIBLE_PINCODES.includes(formData.pincode);
     setIsFeasible(feasible);
 
+    // 📍 Get location saved earlier (from App.tsx)
+    const location = JSON.parse(
+      localStorage.getItem('user_location') || '{}'
+    );
+
     const payload = {
+      eventType: 'lead_submit', // 🔥 VERY IMPORTANT (backend routing)
       name: formData.name,
       phone: formattedPhone,
       pincode: formData.pincode,
       email: formData.email,
+
+      // ✅ Attach location ONLY if available
+      latitude: location.latitude || '',
+      longitude: location.longitude || '',
+      city: location.city || '',
+      state: location.state || '',
+      country: location.country || '',
+
       source: 'Get Started Popup',
     };
 
@@ -108,6 +122,7 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
     }
   };
 
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-md bg-card border-border max-h-[90vh] overflow-y-auto">
@@ -127,9 +142,8 @@ const LeadFormPopup = ({ isOpen, onClose }: LeadFormPopupProps) => {
               className="text-center py-12"
             >
               <div
-                className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ${
-                  isFeasible ? 'bg-green-100' : 'bg-red-100'
-                }`}
+                className={`w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 ${isFeasible ? 'bg-green-100' : 'bg-red-100'
+                  }`}
               >
                 {isFeasible ? (
                   <Check className="w-10 h-10 text-green-600" />
