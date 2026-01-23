@@ -17,15 +17,21 @@ import CTA from '@/sections/CTA';
 import Contact from '@/sections/Contact';
 import './App.css';
 
+/* ✅ GOOGLE SHEET WEB APP URL */
+const GOOGLE_SHEET_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
+
 function App() {
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
 
   const openLeadForm = () => setIsLeadFormOpen(true);
   const closeLeadForm = () => setIsLeadFormOpen(false);
 
+  /* =====================================================
+     📍 LOCATION PERMISSION (STORE LOCALLY ONLY)
+     ===================================================== */
   useEffect(() => {
-    const alreadyCaptured = localStorage.getItem('user_location');
-    if (alreadyCaptured) return;
+    const stored = localStorage.getItem('user_location');
+    if (stored) return;
 
     if (!navigator.geolocation) return;
 
@@ -49,14 +55,15 @@ function App() {
               '',
             state: geoData.address?.state || '',
             country: geoData.address?.country || '',
-            timestamp: new Date().toISOString(),
+            capturedAt: Date.now(),
           };
+
           localStorage.setItem(
             'user_location',
             JSON.stringify(locationData)
           );
 
-          console.log('📍 Location stored locally', locationData);
+          console.log('📍 Location captured locally', locationData);
         } catch (err) {
           console.error('Reverse geocoding failed', err);
         }
@@ -67,13 +74,41 @@ function App() {
     );
   }, []);
 
+  /* =====================================================
+     🧹 LOCATION-ONLY FALLBACK
+     If user leaves without submitting any form
+     ===================================================== */
+  useEffect(() => {
+    const handleUnload = async () => {
+      const location = localStorage.getItem('user_location');
+      const leadSubmitted = localStorage.getItem('lead_submitted');
+      const contactSubmitted = localStorage.getItem('contact_submitted');
+
+      if (location && !leadSubmitted && !contactSubmitted) {
+        try {
+          await fetch(GOOGLE_SHEET_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+              ...JSON.parse(location),
+              source: 'Location Permission',
+            }),
+          });
+          console.log('📍 Location-only saved to Sheet 3');
+        } catch (err) {
+          console.error('Location-only submit failed', err);
+        }
+      }
+    };
+
+    window.addEventListener('beforeunload', handleUnload);
+    return () => window.removeEventListener('beforeunload', handleUnload);
+  }, []);
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-background">
-        {/* Navigation */}
         <Navbar onLeadClick={openLeadForm} />
 
-        {/* Main Content */}
         <main>
           <Hero onLeadClick={openLeadForm} />
           <Features />
@@ -87,10 +122,8 @@ function App() {
           <Contact />
         </main>
 
-        {/* Footer */}
         <Footer />
 
-        {/* Conversion Components */}
         <LeadFormPopup isOpen={isLeadFormOpen} onClose={closeLeadForm} />
         <StickyCTABar onLeadClick={openLeadForm} />
         <FloatingButtons />
