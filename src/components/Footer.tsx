@@ -22,11 +22,12 @@ const footerLinks = {
     { name: 'Status', href: '#' },
   ],
   legal: [
-    { name: "Privacy Policy", href: "/privacy-policy" },
-    { name: 'Terms of Service', href: '#' },
-    { name: 'Refund Policy', href: '#' },
-    { name: 'Cancellation', href: '#' },
-  ],
+  { name: "Privacy Policy", href: "/privacy-policy" },
+  { name: "Terms of Service", href: "/terms-of-service" },
+  { name: "Refund Policy", href: "/refund-policy" },
+  { name: "Cancellation", href: "/cancellation" },
+],
+
 };
 
 const socialLinks = [
