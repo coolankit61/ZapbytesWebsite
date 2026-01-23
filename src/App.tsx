@@ -17,21 +17,15 @@ import CTA from '@/sections/CTA';
 import Contact from '@/sections/Contact';
 import './App.css';
 
-/* ✅ GOOGLE SHEET WEB APP URL */
-const GOOGLE_SHEET_URL = import.meta.env.VITE_GOOGLE_SHEET_URL;
-
 function App() {
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
 
   const openLeadForm = () => setIsLeadFormOpen(true);
   const closeLeadForm = () => setIsLeadFormOpen(false);
 
-  /* =====================================================
-     📍 LOCATION PERMISSION → SAVE TO SHEET 3 (ONE TIME)
-     ===================================================== */
   useEffect(() => {
-    const alreadySaved = localStorage.getItem('location_saved');
-    if (alreadySaved) return;
+    const alreadyCaptured = localStorage.getItem('user_location');
+    if (alreadyCaptured) return;
 
     if (!navigator.geolocation) return;
 
@@ -40,13 +34,12 @@ function App() {
         const { latitude, longitude } = position.coords;
 
         try {
-          /* 🌍 Reverse Geocoding (Lat/Lng → City, State, Country) */
           const geoRes = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
           );
           const geoData = await geoRes.json();
 
-          const payload = {
+          const locationData = {
             latitude,
             longitude,
             city:
@@ -56,18 +49,16 @@ function App() {
               '',
             state: geoData.address?.state || '',
             country: geoData.address?.country || '',
-            source: 'Location Permission', // 📌 SHEET 3
+            timestamp: new Date().toISOString(),
           };
+          localStorage.setItem(
+            'user_location',
+            JSON.stringify(locationData)
+          );
 
-          await fetch(GOOGLE_SHEET_URL, {
-            method: 'POST',
-            body: JSON.stringify(payload), // ⚠️ no headers
-          });
-
-          localStorage.setItem('location_saved', 'true');
-          console.log('📍 Location + Region saved to Sheet 3');
+          console.log('📍 Location stored locally', locationData);
         } catch (err) {
-          console.error('Location reverse lookup failed', err);
+          console.error('Reverse geocoding failed', err);
         }
       },
       () => {
